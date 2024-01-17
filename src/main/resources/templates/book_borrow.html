@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Borrow</title>
+</head>
+
+<body>
+<h1>書籍の貸出・返却</h1>	
+
+<form action="/search" method="post">
+	書籍コード:<input type="number" name="id" th:value="${id}">
+	<input type="submit" value="検索">
+</form>
+
+<table border="1">
+ <tr>
+  <th>書籍コード</th>
+  <th>書籍名</th>
+  <th>著者</th>	
+  <th>ISBN</th>
+  <th>貸出状況</th>
+  <th>貸出</th>
+  <th>返却</th>
+  <th>貸出履歴</th>
+ </tr>
+ <tr th:each="book:${books}">
+   <td th:text="${book.id}"></td>
+   <td th:text="${book.title}"></td>
+   <td th:text="${book.author}"></td>
+   <td th:text="${book.isbn}"></td>
+   <td>
+    <span th:text="${book.status}" th:style="${book.status == 'AVAILABLE'} ? 'color: blue' : 'color: red'"></span>      
+   </td>
+   <td>
+	   <form action="/borrowing" method="get">
+	   <input type="hidden" name="id" th:value="${book.id}">   
+	  　<button type="submit">借りる</button>
+	   </form>
+   </td>
+   <td>
+	   <form action="/return" method="get">
+	   <input type="hidden" name="id" th:value="${book.id}">   
+	  　<button type="submit">返却</button>
+	   </form>
+   </td>
+   <td>
+	   <form action="/history" method="get">
+	   <input type="hidden" name="id" th:value="${book.id}">   
+	  　<button type="submit">履歴を見る</button>
+	   </form>
+   </td>
+  </tr>
+ </table>
+ <a href="/">書籍一覧へ戻る</a>	
+</body>	
+		
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>return</title>
+</head>
+
+<body>
+    <h1>返却</h1>
+
+   <form action="/confirm-return" method="post">
+    <input type="hidden" name="id" th:value="${book.id}" />
+    <p>この書籍を返却しますか？</p>
+    <p>書籍名: <span th:text="${book.title}"></span></p>
+    <p>著者: <span th:text="${book.author}"></span></p>
+    <p>ISBN: <span th:text="${book.isbn}"></span></p>
+    <button type="submit">はい</button>
+    
+    
+</form>
+<a href="/borrow">貸出画面へ戻る</a>
+</body>
+
+</html>

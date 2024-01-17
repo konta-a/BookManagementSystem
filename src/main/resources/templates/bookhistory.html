@@ -1,0 +1,34 @@
+<!-- borrowing_history.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BorrowHistory</title>
+</head>
+
+<body>
+    <h1>貸し出し履歴</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>書籍名</th>
+                <th>貸出日</th>
+   　　　　　　　　　　　　　<th>返却日</th>
+            </tr>
+        </thead>
+        <tbody>
+ <tr th:each="history: ${bookHistory}">
+        <td th:text="${history.book != null ? history.book.title : ''}"></td>
+        <td th:text="${#temporals.format(history.borrowDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${#temporals.format(history.returnDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+        </tbody>
+    </table>
+
+    <a href="/borrow">貸出・返却画面へ戻る</a>
+</body>
+
+</html>

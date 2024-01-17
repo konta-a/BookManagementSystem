@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>delete</title>
+</head>
+
+<body>
+    <h1>書籍の削除</h1>
+
+    <form th:action="@{/delete}" method="post">
+    <input type="hidden" th:name="id" th:value="${book.id}" />
+        <p>本当にこの書籍を削除しますか？</p>
+        <p>書籍名: <span th:text="${book.title}"></span></p>
+        <p>著者: <span th:text="${book.author}"></span></p>
+        <p>ISBN: <span th:text="${book.isbn}"></span></p>
+
+        <button type="submit">削除</button>
+    </form>
+    <a href="/">トップページへ戻る</a>
+</body>
+
+</html>

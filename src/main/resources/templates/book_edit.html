@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 0;
+        }
+
+        div {
+            margin-bottom: 0px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>書籍の編集</h1>
+
+    <form th:action="@{/update}" method="post" th:object="${book}">
+       <input type="hidden" th:field="*{id}" />
+    
+        <div>
+            <label for="title">書籍タイトル:</label>
+            <input type="text" id="title" th:field="*{title}" />
+        </div>
+
+        <div>
+            <label for="author">著者:</label>
+            <input type="text" id="author" th:field="*{author}" />
+        </div>
+
+        <div>
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" th:field="*{isbn}" />
+        </div>
+       
+        <button type="submit">更新</button>
+        
+       　<input type="hidden" name="originalStatus" th:value="${originalStatus}">
+        
+    </form>
+    <a href="/">トップページへ戻る</a>
+</body>
+
+</html>
